@@ -2,6 +2,9 @@ import React from 'react'
 import './crud.css'
 
 const Crud = () => {
+
+    
+
     return (
         <div>
             <nav>
@@ -115,7 +118,7 @@ const Crud = () => {
                         <div className="post-input-container">
                             <textarea rows={3} placeholder="what's on your mind,massi?" defaultValue={""} />
                             <div className="add-post-links">
-                                <a href> <img src="https://cdn.shopify.com/s/files/1/0702/0511/2635/files/live-video.png" />Live Video</a>
+                                <a href> <img src="https://cdn.shopify.com/s/files/1/0702/0511/2635/files/live-video.png" />Live Video</a> 
                                 <a href> <img src="https://cdn.shopify.com/s/files/1/0702/0511/2635/files/photo.png" />Photo/Video</a>
                                 <a href> <img src="https://cdn.shopify.com/s/files/1/0702/0511/2635/files/feeling.png" />Feeling/Activity</a>
                             </div>
