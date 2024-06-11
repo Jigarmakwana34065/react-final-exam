@@ -513,9 +513,28 @@ nav {
 }
 
 
+/* custom css  */ 
 
+.add-post-links a {
+  margin: 0px;
+  padding: 10px;
+  font-size: 16px;
+}
 
+.post-profile-icon button {
+  margin: 0px 5px;
+}
 
+.post-profile-icon button .delete {
+  color: red;
+  font-size: 16px;
+  padding: 5px;
+}
 
+.post-profile-icon button .edit {
+  color: green;
+  font-size: 16px;
+  padding: 5px;
+}
 
 
