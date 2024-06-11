@@ -7,7 +7,7 @@ const Crud = () => {
     const [image, setImage] = useState()
     const [record, setRecord] = useState([])
     const id = Math.floor(Math.random() * 1000)
-
+    const [editid, setEditid] = useState('')
 
     const viewData = async () => {
         try {
@@ -22,19 +22,32 @@ const Crud = () => {
 
     useEffect(() => {
         viewData()
-    }, [])
+    }, [image])
 
     const addData = async () => {
         try {
 
-            let { data } = await axios.post(`http://localhost:8000/user`, {
-                id: id,
-                image: image
+            if (editid) {
+                let {data} = await axios.patch(`http://localhost:8000/user/${editid}`, {
+                    image : image
+                }) 
 
-            })
-            setRecord(data)
-            viewData()
-            setImage('')
+                setRecord(data)
+                editid('')
+                setImage('')
+                viewData()
+
+            } else {
+                let { data } = await axios.post(`http://localhost:8000/user`, {
+                    id: id,
+                    image: image
+
+                })
+                setRecord(data)
+                setImage('')
+                viewData()
+            }         
+
         }
         catch (err) {
             console.log(err);
@@ -46,19 +59,31 @@ const Crud = () => {
         try {
             let { data } = await axios.delete(`http://localhost:8000/user/${id}`)
 
-            setRecord(data);
+            let deleteRecord = record.filter((val) => {
+                return val.id !== id
+            })
+
+            setRecord(deleteRecord);
+
+            console.log(deleteRecord);
             viewData()
 
         } catch (err) {
             console.log(err);
+            return false
         }
     }
 
     const editRecord = async (id) => {
         try {
-            let { data } = await axios.put(`http://localhost:8000/user/${id}`)
+            // let { data } = await axios.get(`http://localhost:8000/user/${id}`)
 
-            console.log(data);
+            let editData = record.find((val) => {
+                return val.id == id
+            })
+
+            setImage(editData.image)
+            setEditid(id)
         }
         catch (err) {
             console.log(err);
@@ -66,7 +91,7 @@ const Crud = () => {
     }
 
 
-    console.log(record);
+    // console.log(record);
 
 
 
